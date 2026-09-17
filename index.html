@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odisha Police Constable Mock Test-23 | Polai Education Hub</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-dark: #1e293b;
+      --accent: #2563eb;
+      --secondary: #0d9488;
+      --success: #16a34a;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --review: #7c3aed;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', 'Segoe UI', 'Noto Sans Odia', 'Kalinga', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e1b4b 100%);
+      color: #fff;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #fbbf24, #d97706);
+      color: #1e1b4b;
+      font-weight: 800;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+    }
+
+    .brand-text h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-text p {
+      font-size: 0.75rem;
+      color: #93c5fd;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .timer-badge {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 6px 14px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .timer-badge.warning {
+      background: rgba(220, 38, 38, 0.3);
+      border-color: #ef4444;
+      color: #fca5a5;
+      animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.8; }
+      100% { opacity: 1; transform: scale(1.03); }
+    }
+
+    .icon-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .icon-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    /* Container Layout */
+    .app-container {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Screens */
+    .screen {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .screen.active {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .spinner {
+      width: 56px;
+      height: 56px;
+      border: 5px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      border-top-color: #3b82f6;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 16px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Start Screen */
+    .start-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 40px;
+      max-width: 800px;
+      margin: 20px auto;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .hero-badge {
+      background: #dbeafe;
+      color: #1e40af;
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+    }
+
+    .start-card h2 {
+      font-size: 2.2rem;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .start-card h3 {
+      font-size: 1.2rem;
+      color: var(--secondary);
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .test-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin: 28px 0;
+    }
+
+    .stat-box {
+      background: #f1f5f9;
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .stat-box .val {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .stat-box .lbl {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .instructions-list {
+      text-align: left;
+      background: #fafafa;
+      padding: 20px 24px;
+      border-radius: 10px;
+      border-left: 4px solid var(--accent);
+      margin-bottom: 30px;
+    }
+
+    .instructions-list h4 {
+      margin-bottom: 12px;
+      color: var(--primary-dark);
+    }
+
+    .instructions-list ul {
+      padding-left: 20px;
+      line-height: 1.7;
+      font-size: 0.9rem;
+      color: #334155;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+      padding: 16px 40px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+      transition: all 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+    }
+
+    /* Test View Layout */
+    .test-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+      flex: 1;
+    }
+
+    @media (max-width: 992px) {
+      .test-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .question-container {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .q-header {
+      padding: 16px 24px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .q-num {
+      font-weight: 700;
+      color: var(--primary-dark);
+      font-size: 1.05rem;
+    }
+
+    .q-marks {
+      font-size: 0.85rem;
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .q-body {
+      padding: 24px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .q-text-en {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #1e293b;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .q-text-or {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #0369a1;
+      line-height: 1.7;
+      background: #f0f9ff;
+      padding: 14px 18px;
+      border-radius: 8px;
+      border-left: 3px solid #0284c7;
+      margin-bottom: 24px;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option-card {
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.2s;
+      background: #fff;
+    }
+
+    .option-card:hover {
+      border-color: var(--accent);
+      background: #f0f6ff;
+    }
+
+    .option-card.selected {
+      border-color: var(--accent);
+      background: #eff6ff;
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .opt-letter {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      color: var(--text-muted);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .option-card.selected .opt-letter {
+      background: var(--accent);
+      color: white;
+    }
+
+    .opt-text {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #334155;
+    }
+
+    .q-footer {
+      padding: 16px 24px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-sec {
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-sec:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .btn-review {
+      background: #f3e8ff;
+      border: 1px solid #d8b4fe;
+      color: #6b21a8;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-review:hover {
+      background: #e9d5ff;
+    }
+
+    .btn-submit-test {
+      background: var(--success);
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-submit-test:hover {
+      background: #15803d;
+    }
+
+    /* Palette Sidebar */
+    .palette-container {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .palette-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--primary-dark);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-size: 0.75rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+    }
+
+    .palette-badge {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .badge-answered { background: var(--success); }
+    .badge-not-answered { background: var(--danger); }
+    .badge-review { background: var(--review); }
+    .badge-review-ans { background: var(--review); border: 2px solid #22c55e; }
+    .badge-not-visited { background: #e2e8f0; color: #475569; }
+
+    .questions-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      max-height: 300px;
+      overflow-y: auto;
+      padding: 4px;
+    }
+
+    .q-btn {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .q-btn.current {
+      box-shadow: 0 0 0 3px #3b82f6;
+    }
+
+    .q-btn.answered { background: var(--success); color: white; border-color: var(--success); }
+    .q-btn.not-answered { background: var(--danger); color: white; border-color: var(--danger); }
+    .q-btn.review { background: var(--review); color: white; border-color: var(--review); }
+    .q-btn.review-ans { background: var(--review); color: white; border-color: #22c55e; position: relative; }
+    .q-btn.review-ans::after {
+      content: '✓';
+      position: absolute;
+      top: 1px;
+      right: 3px;
+      font-size: 10px;
+      color: #22c55e;
+    }
+
+    /* Result Dashboard */
+    .result-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 36px;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+      border: 1px solid var(--border);
+    }
+
+    .result-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .result-header h2 {
+      font-size: 2rem;
+      color: var(--primary-dark);
+    }
+
+    .score-banner {
+      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+      color: white;
+      padding: 24px;
+      border-radius: 16px;
+      text-align: center;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+    }
+
+    .score-banner .big-score {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1;
+      margin: 8px 0;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .metric-card {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .metric-card .val {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .metric-card.correct .val { color: var(--success); }
+    .metric-card.wrong .val { color: var(--danger); }
+    .metric-card.unattempted .val { color: var(--warning); }
+    .metric-card.accuracy .val { color: var(--accent); }
+
+    .action-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      color: white;
+      transition: all 0.2s;
+    }
+
+    .social-btn.yt { background: #ff0000; }
+    .social-btn.tg { background: #0088cc; }
+    .social-btn.tg-group { background: #005580; }
+    .social-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.active { display: flex; }
+
+    .modal-card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      max-width: 480px;
+      width: 90%;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .modal-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: var(--primary-dark);
+    }
+
+    .modal-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    /* Review View */
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .review-item {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .review-status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .status-correct { background: #dcfce7; color: #15803d; }
+    .status-wrong { background: #fee2e2; color: #b91c1c; }
+    .status-unattempted { background: #fef3c7; color: #b45309; }
+
+    .exp-box {
+      margin-top: 16px;
+      background: #f8fafc;
+      padding: 14px 18px;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+      font-size: 0.9rem;
+      color: #334155;
+    }
+
+    footer {
+      text-align: center;
+      padding: 16px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: auto;
+      border-top: 1px solid var(--border);
+      background: white;
+    }
+
+    .palette-toggle-btn {
+      display: none;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Mobile Responsive Optimizations */
+    @media (max-width: 992px) {
+      .palette-toggle-btn {
+        display: inline-block;
+      }
+
+      .palette-container {
+        display: none;
+      }
+
+      .palette-container.active-mobile {
+        display: flex !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 10px 14px;
+      }
+
+      .brand-title {
+        gap: 8px;
+      }
+
+      .brand-logo-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+        border-radius: 8px;
+      }
+
+      .brand-text h1 {
+        font-size: 0.95rem;
+      }
+
+      .brand-text p {
+        font-size: 0.65rem;
+      }
+
+      .header-controls {
+        gap: 8px;
+      }
+
+      .timer-badge {
+        padding: 4px 10px;
+        font-size: 0.85rem;
+      }
+
+      .icon-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+      }
+
+      .app-container {
+        padding: 10px;
+      }
+
+      .start-card {
+        padding: 24px 16px;
+        margin: 10px auto;
+      }
+
+      .start-card h2 {
+        font-size: 1.5rem;
+      }
+
+      .start-card h3 {
+        font-size: 1rem;
+      }
+
+      .test-stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin: 18px 0;
+      }
+
+      .stat-box {
+        padding: 12px;
+      }
+
+      .stat-box .val {
+        font-size: 1.15rem;
+      }
+
+      .instructions-list {
+        padding: 14px 16px;
+        font-size: 0.85rem;
+      }
+
+      .btn-primary {
+        padding: 14px 28px;
+        font-size: 1rem;
+        width: 100%;
+      }
+
+      .test-layout {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .q-header {
+        padding: 12px 14px;
+      }
+
+      .q-body {
+        padding: 16px 14px;
+      }
+
+      .q-text-en {
+        font-size: 0.95rem;
+      }
+
+      .q-text-or {
+        font-size: 0.95rem;
+        padding: 10px 12px;
+        margin-bottom: 18px;
+      }
+
+      .option-card {
+        padding: 12px 14px;
+        gap: 10px;
+        min-height: 48px;
+      }
+
+      .opt-letter {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+      }
+
+      .opt-text {
+        font-size: 0.9rem;
+      }
+
+      .q-footer {
+        padding: 12px 14px;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .btn-group {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .btn-sec, .btn-review, .btn-submit-test {
+        width: 100%;
+        text-align: center;
+        padding: 12px 10px;
+        font-size: 0.85rem;
+      }
+
+      .palette-container {
+        padding: 16px;
+      }
+
+      .questions-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+      }
+
+      .result-card {
+        padding: 20px 14px;
+      }
+
+      .result-header h2 {
+        font-size: 1.5rem;
+      }
+
+      .score-banner {
+        padding: 18px;
+      }
+
+      .score-banner .big-score {
+        font-size: 2.2rem;
+      }
+
+      .metrics-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .metric-card {
+        padding: 12px;
+      }
+
+      .metric-card .val {
+        font-size: 1.2rem;
+      }
+
+      .review-item {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Animation -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <h3>Loading Odisha Police Constable Mock Test...</h3>
+    <p style="font-size:0.85rem; color:#94a3b8; margin-top:6px;">Polai Education Hub</p>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="brand-title">
+      <div class="brand-logo-icon">P</div>
+      <div class="brand-text">
+        <h1>POLAI EDUCATION HUB</h1>
+        <p>Odisha Police Constable Mock Test-23</p>
+      </div>
+    </div>
+    <div class="header-controls">
+      <div class="timer-badge" id="timerBadge" style="display:none;">
+        ⏱️ <span id="timerDisplay">25:00</span>
+      </div>
+      <button class="icon-btn" id="soundBtn" onclick="toggleSound()" title="Toggle Sound">🔊</button>
+      <button class="icon-btn" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
+    </div>
+  </header>
+
+  <div class="app-container">
+
+    <!-- FRONT / START SCREEN -->
+    <div class="screen active" id="startScreen">
+      <div class="start-card">
+        <span class="hero-badge">OFFLINE MATHEMATICS PRACTICE TEST</span>
+        <h2>ODISHA POLICE CONSTABLE</h2>
+        <h3>MOCK TEST-23</h3>
+
+        <div class="test-stats-grid">
+          <div class="stat-box">
+            <div class="val">20</div>
+            <div class="lbl">Questions</div>
+          </div>
+          <div class="stat-box">
+            <div class="val">20</div>
+            <div class="lbl">Total Marks</div>
+          </div>
+          <div class="stat-box">
+            <div class="val">25 Mins</div>
+            <div class="lbl">Duration</div>
+          </div>
+          <div class="stat-box">
+            <div class="val">Eng + Odia</div>
+            <div class="lbl">Language</div>
+          </div>
+        </div>
+
+        <div class="instructions-list">
+          <h4>📌 Marking Scheme & Test Rules:</h4>
+          <ul>
+            <li><strong>Correct Answer:</strong> +1.0 Mark</li>
+            <li><strong>Wrong Answer:</strong> -1/3 (0.33) Mark</li>
+            <li><strong>Unattempted:</strong> 0 Mark</li>
+            <li>Questions are presented in <strong>English & Odia</strong> bilingual format.</li>
+            <li>You can change your answer anytime before final submission.</li>
+            <li>Test auto-submits when timer reaches 00:00.</li>
+          </ul>
+        </div>
+
+        <button class="btn-primary" onclick="startTestWithLoading()">🚀 START TEST NOW</button>
+      </div>
+    </div>
+
+    <!-- TEST INTERFACE SCREEN -->
+    <div class="screen" id="testScreen">
+      <div class="test-layout">
+        <!-- Question Container -->
+        <div class="question-container">
+          <div class="q-header">
+            <span class="q-num" id="qNumText">Question 1 of 20</span>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <button class="palette-toggle-btn" onclick="toggleMobilePalette()">📋 Palette</button>
+              <span class="q-marks">+1.0, -0.33</span>
+            </div>
+          </div>
+          <div class="q-body">
+            <div class="q-text-en" id="qTextEn"></div>
+            <div class="q-text-or" id="qTextOr"></div>
+            <div class="options-grid" id="optionsContainer"></div>
+          </div>
+          <div class="q-footer">
+            <div class="btn-group">
+              <button class="btn-sec" onclick="prevQuestion()">◄ Previous</button>
+              <button class="btn-sec" onclick="clearResponse()">Clear Response</button>
+              <button class="btn-review" onclick="markForReview()">Mark for Review & Next</button>
+            </div>
+            <div class="btn-group">
+              <button class="btn-primary" style="padding:10px 24px; font-size:0.9rem;" onclick="nextQuestion()">Next ►</button>
+              <button class="btn-submit-test" onclick="confirmSubmitModal()">Submit Test</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Palette Sidebar -->
+        <div class="palette-container">
+          <div class="palette-title">Question Palette</div>
+          
+          <div class="legend-grid">
+            <div class="legend-item"><span class="palette-badge badge-answered" id="countAnswered">0</span> Answered</div>
+            <div class="legend-item"><span class="palette-badge badge-not-answered" id="countNotAnswered">0</span> Not Answered</div>
+            <div class="legend-item"><span class="palette-badge badge-review" id="countReview">0</span> Marked Review</div>
+            <div class="legend-item"><span class="palette-badge badge-not-visited" id="countNotVisited">20</span> Not Visited</div>
+          </div>
+
+          <div class="questions-grid" id="paletteGrid"></div>
+
+          <button class="btn-submit-test" style="width:100%; margin-top:auto;" onclick="confirmSubmitModal()">Finish & Submit Test</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULT DASHBOARD SCREEN -->
+    <div class="screen" id="resultScreen">
+      <div class="result-card">
+        <div class="result-header">
+          <h2>🎉 TEST COMPLETED</h2>
+          <p style="color:var(--text-muted); margin-top:4px;">ODISHA POLICE CONSTABLE MOCK TEST-23</p>
+        </div>
+
+        <div class="score-banner">
+          <div>YOUR FINAL SCORE</div>
+          <div class="big-score"><span id="resScore">0.00</span> / 20</div>
+          <div id="resGrade" style="font-weight:600; font-size:1.1rem; color:#bfdbfe;">Performance: --</div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card correct">
+            <div class="val" id="resCorrect">0</div>
+            <div class="lbl">Correct Answers</div>
+          </div>
+          <div class="metric-card wrong">
+            <div class="val" id="resWrong">0</div>
+            <div class="lbl">Wrong Answers</div>
+          </div>
+          <div class="metric-card unattempted">
+            <div class="val" id="resUnattempted">0</div>
+            <div class="lbl">Unattempted</div>
+          </div>
+          <div class="metric-card accuracy">
+            <div class="val" id="resAccuracy">0%</div>
+            <div class="lbl">Accuracy Rate</div>
+          </div>
+          <div class="metric-card">
+            <div class="val" id="resTime">00:00</div>
+            <div class="lbl">Time Taken</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:24px;">
+          <button class="btn-primary" onclick="showReviewScreen()">🔍 Review Answers</button>
+          <button class="btn-sec" onclick="restartTest()">🔄 Restart Test</button>
+          <button class="btn-sec" onclick="window.print()">🖨️ Print Result</button>
+        </div>
+
+        <div class="action-links">
+          <p style="font-weight:700; color:var(--primary-dark); text-align:center;">Connect with Polai Education Hub</p>
+          <a href="https://youtube.com/@polaieducationhub?si=ldFgPwqalZi6GHnc" target="_blank" rel="noopener" class="social-btn yt">
+            ▶ YouTube – Polai Education Hub
+          </a>
+          <a href="https://t.me/polaieducationhub" target="_blank" rel="noopener" class="social-btn tg">
+            📢 Telegram Channel
+          </a>
+          <a href="https://t.me/polaieducationhubdoubtgroup" target="_blank" rel="noopener" class="social-btn tg-group">
+            💬 Telegram Doubt Group
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- REVIEW ANSWERS SCREEN -->
+    <div class="screen" id="reviewScreen">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; max-width:1000px; margin-left:auto; margin-right:auto; width:100%;">
+        <h2 style="color:var(--primary-dark);">Detailed Answer Solutions</h2>
+        <button class="btn-sec" onclick="showResultScreen()">◄ Back to Summary</button>
+      </div>
+      <div class="review-list" id="reviewList"></div>
+    </div>
+
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div class="modal" id="submitModal">
+    <div class="modal-card">
+      <h3>Submit Test Confirmation</h3>
+      <p id="submitModalText">Are you sure you want to submit the test?</p>
+      <div class="modal-actions">
+        <button class="btn-sec" onclick="closeSubmitModal()">Cancel</button>
+        <button class="btn-submit-test" onclick="submitTest()">Yes, Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2026 Polai Education Hub | All Rights Reserved.
+  </footer>
+
+  <script>
+    // 20 Exact Questions Data from PDF
+    const questionsData = [
+      {
+        id: 1,
+        questionEn: "Q1. The average salary per head of all the employees of an institution is Rs.60. The average salary of 12 officers is Rs.400, the average salary per head of the rest is Rs.56. The total number of employees in the institution is:",
+        questionOr: "ଏକ ଅନୁଷ୍ଠାନର ସମସ୍ତ କର୍ମଚାରୀଙ୍କ ମୁଣ୍ଡପିଛା ହାରାହାରି ବେତନ ଟଙ୍କା 60। 12 ଜଣ ଅଧିକାରୀଙ୍କ ହାରାହାରି ବେତନ ଟଙ୍କା 400, ବାକି ସମସ୍ତଙ୍କର ମୁଣ୍ଡପିଛା ହାରାହାରି ବେତନ ଟଙ୍କା 56। ଅନୁଷ୍ଠାନରେ ମୋଟ କର୍ମଚାରୀଙ୍କ ସଂଖ୍ୟା କେତେ?",
+        options: ["(A) 1035", "(B) 1050", "(C) 1032", "(D) 1030"],
+        correct: 2,
+        explanation: "Let total employees = N. Total salary = 60N. 12 officers salary = 12 * 400 = 4800. Remaining (N-12) employees salary = 56(N-12). Equation: 4800 + 56(N-12) = 60N ⇒ 4800 + 56N - 672 = 60N ⇒ 4128 = 4N ⇒ N = 1032."
+      },
+      {
+        id: 2,
+        questionEn: "Q2. The marked price of a ceiling fan is Rs. 4,200 and the shopkeeper allows a discount of 5% on it. If his profit is 14%, then the cost price of the fan is:",
+        questionOr: "ଏକ ସିଲିଂ ଫ୍ୟାନର ଅଙ୍କିତ ମୂଲ୍ୟ ଟଙ୍କା 4,200 ଏବଂ ଦୋକାନୀ ଏହା ଉପରେ 5% ଛାଡ଼ ଦିଅନ୍ତି। ଯଦି ତାଙ୍କର ଲାଭ 14% ହୁଏ, ତେବେ ଫ୍ୟାନର କ୍ରୟ ମୂଲ୍ୟ କେତେ?",
+        options: ["(A) Rs. 3,200", "(B) Rs. 3,800", "(C) Rs. 3,000", "(D) Rs. 3,500"],
+        correct: 3,
+        explanation: "Selling Price (SP) = 4200 × (100 - 5)% = 4200 × 0.95 = Rs. 3990. Cost Price (CP) = SP / (1 + Profit%) = 3990 / 1.14 = Rs. 3,500."
+      },
+      {
+        id: 3,
+        questionEn: "Q3. X and Y invest Rs. 5200 and Rs. 6200 respectively in a business. If X doubles his capital after 6 months. In what ratio should X and Y divide that year's profit?",
+        questionOr: "X ଏବଂ Y ଏକ ବ୍ୟବସାୟରେ ଯଥାକ୍ରମେ ଟଙ୍କା 5200 ଏବଂ ଟଙ୍କା 6200 ନିବେଶ କରନ୍ତି। ଯଦି X 6 ମାସ ପରେ ତାଙ୍କ ପୁଞ୍ଜି ଦ୍ୱିଗୁଣିତ କରନ୍ତି, ତେବେ ସେହି ବର୍ଷର ଲାଭକୁ X ଏବଂ Y କେଉଁ ଅନୁପାତରେ ବିଭାଜନ କରିବେ?",
+        options: ["(A) 39 : 37", "(B) 39 : 31", "(C) 39 : 32", "(D) 31 : 39"],
+        correct: 1,
+        explanation: "X's total investment unit = 5200 × 6 + (5200 × 2) × 6 = 31200 + 62400 = 93600. Y's investment unit = 6200 × 12 = 74400. Ratio = 93600 : 74400 = 39 : 31."
+      },
+      {
+        id: 4,
+        questionEn: "Q4. A bag contains Rs. 550 in the form of 50 p, 25 p and 20 p coins in the ratio 2:3:5. The difference between the amounts that are contributed by the 50 p and the 20 p coins is:",
+        questionOr: "ଏକ ବ୍ୟାଗରେ 50 ପଇସା, 25 ପଇସା ଏବଂ 20 ପଇସା ମୁଦ୍ରା 2:3:5 ଅନୁପାତରେ ଥାଇ ମୋଟ ଟଙ୍କା 550 ଅଛି। 50 ପଇସା ଏବଂ 20 ପଇସା ମୁଦ୍ରାରୁ ଆସୁଥିବା ଅର୍ଥ ମଧ୍ୟରେ ପାର୍ଥକ୍ୟ କେତେ?",
+        options: ["(A) Rs. 30", "(B) Rs. 20", "(C) Rs. 10", "(D) Rs. 0"],
+        correct: 3,
+        explanation: "Let ratio of coin counts = 2x : 3x : 5x. Value of 50p coins = 2x × 0.50 = 1.00x Rs. Value of 20p coins = 5x × 0.20 = 1.00x Rs. Value of 25p = 3x × 0.25 = 0.75x Rs. Total = 2.75x = 550 ⇒ x = 200. Amount from 50p = Rs. 200, Amount from 20p = Rs. 200. Difference = Rs. 0."
+      },
+      {
+        id: 5,
+        questionEn: "Q5. The fourth proportional of the numbers 8, 12 and 14 is:",
+        questionOr: "8, 12 ଏବଂ 14 ସଂଖ୍ୟାଗୁଡ଼ିକର ଚତୁର୍ଥ ଅନୁପାତିକ ସଂଖ୍ୟା କେତେ?",
+        options: ["(A) 15", "(B) 18", "(C) 24", "(D) 21"],
+        correct: 3,
+        explanation: "Let fourth proportional be x. 8 / 12 = 14 / x ⇒ 8x = 168 ⇒ x = 21."
+      },
+      {
+        id: 6,
+        questionEn: "Q6. In an election, Rashida and Suhana were the only two contestants and all votes cast went in favour of either of these two candidates. If Rashida secured 48% of the votes and lost to Suhana by 832 votes, how many votes were cast in favour of Rashida?",
+        questionOr: "ଏକ ନିର୍ବାଚନରେ ରଶିଦା ଏବଂ ସୁହାନା ମାତ୍ର ଦୁଇଜଣ ପ୍ରାର୍ଥୀ ଥିଲେ ଏବଂ ପଡ଼ିଥିବା ସମସ୍ତ ଭୋଟ ଏହି ଦୁଇ ପ୍ରାର୍ଥୀଙ୍କ ମଧ୍ୟରେ ଗଲା। ଯଦି ରଶିଦା 48% ଭୋଟ ପାଇଲେ ଏବଂ ସୁହାନାଙ୍କଠାରୁ 832 ଭୋଟରେ ପରାଜିତ ହେଲେ, ତେବେ ରଶିଦାଙ୍କ ପକ୍ଷରେ କେତେ ଭୋଟ ପଡ଼ିଥିଲା?",
+        options: ["(A) 9984", "(B) 9864", "(C) 9664", "(D) 9964"],
+        correct: 0,
+        explanation: "Rashida got 48%, Suhana got 52%. Difference = 4%. 4% = 832 votes ⇒ Total votes = 20,800. Rashida's votes = 48% of 20800 = 9984."
+      },
+      {
+        id: 7,
+        questionEn: "Q7. A man spends 20% of his monthly salary on the rent of his house. If every month he also spends ₹600 on his conveyance and ₹3,500 on his grocery and saves the remaining ₹500, his monthly salary is:",
+        questionOr: "ଏକ ବ୍ୟକ୍ତି ତାଙ୍କ ମାସିକ ବେତନର 20% ଘର ଭଡ଼ାରେ ଖର୍ଚ୍ଚ କରନ୍ତି। ଯଦି ସେ ପ୍ରତି ମାସ ଯାତାୟାତରେ ₹600 ଏବଂ ଦୋକାନ ସାମଗ୍ରୀରେ ₹3,500 ଖର୍ଚ୍ଚ କରି ବାକି ₹500 ସଞ୍ଚୟ କରନ୍ତି, ତେବେ ତାଙ୍କ ମାସିକ ବେତନ କେତେ?",
+        options: ["(A) ₹5,500", "(B) ₹5,750", "(C) ₹5,250", "(D) ₹5,000"],
+        correct: 1,
+        explanation: "Let salary = S. Rent = 20%. Remaining = 80%. Other expenses + savings = 600 + 3500 + 500 = ₹4600. 80% of S = 4600 ⇒ S = 4600 / 0.8 = ₹5,750."
+      },
+      {
+        id: 8,
+        questionEn: "Q8. If a/7 = b/11 = c/13, then the value of (a+b+c)/c is",
+        questionOr: "ଯଦି a/7 = b/11 = c/13, ତେବେ (a+b+c)/c ର ମୂଲ୍ୟ କେତେ?",
+        options: ["(A) 31/11", "(B) 31/7", "(C) 7/13", "(D) 31/13"],
+        correct: 3,
+        explanation: "Let a/7 = b/11 = c/13 = k ⇒ a=7k, b=11k, c=13k. (a+b+c)/c = (7k + 11k + 13k) / 13k = 31k / 13k = 31/13."
+      },
+      {
+        id: 9,
+        questionEn: "Q9. The curved surface area of a right circular cylinder and a sphere are equal. If the radius of the sphere and cylinder are 2 and 3, respectively, then find the total surface area of the cylinder.",
+        questionOr: "ଏକ ସମକୋଣ ବୃତ୍ତାକାର ସିଲିଣ୍ଡର ଏବଂ ଏକ ଗୋଲକର ବକ୍ର ପୃଷ୍ଠତଳ କ୍ଷେତ୍ରଫଳ ସମାନ। ଯଦି ଗୋଲକ ଏବଂ ସିଲିଣ୍ଡରର ବ୍ୟାସାର୍ଦ୍ଧ ଯଥାକ୍ରମେ 2 ଏବଂ 3 ହୁଏ, ତେବେ ସିଲିଣ୍ଡରର ମୋଟ ପୃଷ୍ଠତଳ କ୍ଷେତ୍ରଫଳ ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।",
+        options: ["(A) 28π", "(B) 32π", "(C) 34π", "(D) 30π"],
+        correct: 2,
+        explanation: "Sphere CSA = 4πR² = 4π(2)² = 16π. Cylinder CSA = 2πrh = 2π(3)h = 6πh. Given 6πh = 16π ⇒ h = 8/3. Total Surface Area of cylinder = 2πr(r + h) = 2π(3)(3 + 8/3) = 6π(17/3) = 34π."
+      },
+      {
+        id: 10,
+        questionEn: "Q10. The LCM of two positive numbers is three times their HCF. If the product of the LCM and the HCF is 867, find the numbers.",
+        questionOr: "ଦୁଇଟି ଧନାତ୍ମକ ସଂଖ୍ୟାର ଲ.ସା.ଗୁ ସେମାନଙ୍କ ମ.ସା.ଗୁ ର ତିନିଗୁଣ। ଯଦି ଲ.ସା.ଗୁ ଏବଂ ମ.ସା.ଗୁ ର ଗୁଣଫଳ 867 ହୁଏ, ତେବେ ସଂଖ୍ୟାଗୁଡ଼ିକ ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।",
+        options: ["(A) 17, 51", "(B) 27, 81", "(C) 13, 39", "(D) 51, 153"],
+        correct: 0,
+        explanation: "LCM = 3 × HCF. LCM × HCF = 3 × HCF² = 867 ⇒ HCF² = 289 ⇒ HCF = 17. LCM = 51. The numbers are 17 and 51."
+      },
+      {
+        id: 11,
+        questionEn: "Q11. Find the least number which should be added to 2495 so that the sum is exactly divisible by 6, 4 and 3.",
+        questionOr: "2495 ସହିତ କେତେ ସର୍ବନିମ୍ନ ସଂଖ୍ୟା ଯୋଗ କଲେ ଯୋଗଫଳ 6, 4 ଏବଂ 3 ଦ୍ୱାରା ସମ୍ପୂର୍ଣ୍ଣ ବିଭାଜ୍ୟ ହେବ?",
+        options: ["(A) 0", "(B) 1", "(C) 5", "(D) 3"],
+        correct: 1,
+        explanation: "LCM of (6, 4, 3) = 12. 2495 / 12 = 207 remainder 11. Least number to add = 12 - 11 = 1."
+      },
+      {
+        id: 12,
+        questionEn: "Q12. The total number of factors of 540 is-",
+        questionOr: "540 ର ମୋଟ ଉତ୍ପାଦକ (factor) ସଂଖ୍ୟା କେତେ?",
+        options: ["(A) 24", "(B) 30", "(C) 48", "(D) 54"],
+        correct: 0,
+        explanation: "540 = 2² × 3³ × 5¹. Total number of factors = (2+1)(3+1)(1+1) = 3 × 4 × 2 = 24."
+      },
+      {
+        id: 13,
+        questionEn: "Q13. The age of father 15 years ago was twice the age of his son. Five years hence, the father's age will be 1.5 times that of his son. Find the ratio of present age of father and son.",
+        questionOr: "15 ବର୍ଷ ପୂର୍ବେ ପିତାଙ୍କ ବୟସ ତାଙ୍କ ପୁଅଙ୍କ ବୟସର ଦୁଇଗୁଣ ଥିଲା। ଆଗାମୀ 5 ବର୍ଷ ପରେ, ପିତାଙ୍କ ବୟସ ପୁଅଙ୍କ ବୟସର 1.5 ଗୁଣ ହେବ। ପିତା ଓ ପୁଅଙ୍କ ବର୍ତ୍ତମାନ ବୟସର ଅନୁପାତ ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।",
+        options: ["(A) 11 : 5", "(B) 11 : 7", "(C) 7 : 2", "(D) None of the above"],
+        correct: 1,
+        explanation: "Let son's age 15 yrs ago = x, father = 2x. In 5 years: (2x+20) = 1.5(x+20) ⇒ 0.5x = 10 ⇒ x = 20. Present father's age = 55, son = 35. Ratio = 55 : 35 = 11 : 7."
+      },
+      {
+        id: 14,
+        questionEn: "Q14. A car completes a journey in 5 hours. He travels the first half of the journey at the rate of 42 km/hr and the second half at the rate of 48 km/hr. Find the total journey in km.",
+        questionOr: "ଏକ କାର 5 ଘଣ୍ଟାରେ ଏକ ଯାତ୍ରା ସମ୍ପୂର୍ଣ୍ଣ କରେ। ସେ ଯାତ୍ରାର ପ୍ରଥମାର୍ଦ୍ଧ 42 କି.ମି./ଘଣ୍ଟା ବେଗରେ ଏବଂ ଦ୍ୱିତୀୟାର୍ଦ୍ଧ 48 କି.ମି./ଘଣ୍ଟା ବେଗରେ ଯାତ୍ରା କରେ। ମୋଟ ଯାତ୍ରାର ଦୂରତା (କି.ମି.ରେ) ନିର୍ଣ୍ଣୟ କରନ୍ତୁ।",
+        options: ["(A) 220 km", "(B) 224 km", "(C) 228 km", "(D) 226 km"],
+        correct: 1,
+        explanation: "Average Speed = 2(42)(48)/(42+48) = 4032 / 90 = 44.8 km/h. Total distance = 44.8 × 5 = 224 km."
+      },
+      {
+        id: 15,
+        questionEn: "Q15. A and B can complete a work in 12 days and 20 days, respectively. They work together for 4 days. C alone completes the remaining work in 14 days. B and C together can complete the same work in:",
+        questionOr: "A ଏବଂ B ଯଥାକ୍ରମେ 12 ଦିନ ଏବଂ 20 ଦିନରେ ଏକ କାର୍ଯ୍ୟ ସମ୍ପୂର୍ଣ୍ଣ କରିପାରନ୍ତି। ସେମାନେ 4 ଦିନ ଏକାଠି କାର୍ଯ୍ୟ କରନ୍ତି। C ଏକୁଟିଆ ବାକି କାର୍ଯ୍ୟ 14 ଦିନରେ ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତି। B ଏବଂ C ଏକାଠି ସେହି କାର୍ଯ୍ୟ କେତେ ଦିନରେ ସମ୍ପୂର୍ଣ୍ଣ କରିପାରିବେ?",
+        options: ["(A) 16 days", "(B) 12 days", "(C) 15 days", "(D) 10 days"],
+        correct: 1,
+        explanation: "Total work = 60 units. A=5 u/day, B=3 u/day. 4 days work = 4(8) = 32 units. Remaining = 28 units. C's rate = 28/14 = 2 u/day. B+C rate = 3+2 = 5 u/day. Time = 60/5 = 12 days."
+      },
+      {
+        id: 16,
+        questionEn: "Q16. 15 taps can fill a tank in 36 minutes. How many taps will be required to fill the tank in one hour?",
+        questionOr: "15ଟି ଟୋଟି 36 ମିନିଟରେ ଏକ ଟାଙ୍କିକୁ ପୂର୍ଣ୍ଣ କରିପାରନ୍ତି। ଟାଙ୍କିକୁ ଏକ ଘଣ୍ଟାରେ ପୂର୍ଣ୍ଣ କରିବାକୁ କେତୋଟି ଟୋଟି ଆବଶ୍ୟକ ହେବ?",
+        options: ["(A) 12", "(B) 9", "(C) 8", "(D) 6"],
+        correct: 1,
+        explanation: "15 × 36 = N × 60 ⇒ 540 = 60N ⇒ N = 9 taps."
+      },
+      {
+        id: 17,
+        questionEn: "Q17. The compound interest on ₹18,000 at 7% per annum, compounded annually, is ₹1,260. What is the period of time?",
+        questionOr: "₹18,000 ଉପରେ ବାର୍ଷିକ 7% ହାରରେ, ବାର୍ଷିକ ଚକ୍ରବୃଦ୍ଧି ହେଉଥିବା ଚକ୍ରବୃଦ୍ଧି ସୁଧ ₹1,260 ଅଟେ। ସମୟ ଅବଧି କେତେ?",
+        options: ["(A) 1 year", "(B) 2 years", "(C) 3 years", "(D) 4 years"],
+        correct: 0,
+        explanation: "Interest for 1st year = 7% of ₹18,000 = ₹1,260. Hence, time period = 1 year."
+      },
+      {
+        id: 18,
+        questionEn: "Q18. If the principal amount is Rs.1000, the rate of interest is 5% per annum, and the time period is 2 years, what is the simple interest earned?",
+        questionOr: "ଯଦି ମୂଳଧନ ଟଙ୍କା 1000, ସୁଧ ହାର ବାର୍ଷିକ 5% ଏବଂ ସମୟ ଅବଧି 2 ବର୍ଷ ହୁଏ, ତେବେ ସରଳ ସୁଧ କେତେ ମିଳିବ?",
+        options: ["(A) Rs.50", "(B) Rs.10", "(C) Rs.100", "(D) Rs.150"],
+        correct: 2,
+        explanation: "SI = (P × R × T) / 100 = (1000 × 5 × 2) / 100 = Rs. 100."
+      },
+      {
+        id: 19,
+        questionEn: "Q19. If 36 litres of 20% milk solution is mixed with 48 litres of 10% milk solution, then what will be the percentage concentration of milk in the final solution?",
+        questionOr: "ଯଦି 36 ଲିଟର 20% କ୍ଷୀର ଦ୍ରବଣକୁ 48 ଲିଟର 10% କ୍ଷୀର ଦ୍ରବଣ ସହିତ ମିଶ୍ରିତ କରାଯାଏ, ତେବେ ଅନ୍ତିମ ଦ୍ରବଣରେ କ୍ଷୀରର ଶତକଡ଼ା ଘନତ୍ୱ କେତେ ହେବ?",
+        options: ["(A) 14.28%", "(B) 15.48%", "(C) 12.38%", "(D) 13.36%"],
+        correct: 0,
+        explanation: "Pure milk = 36(0.20) + 48(0.10) = 7.2 + 4.8 = 12 L. Total solution = 36 + 48 = 84 L. Concentration = (12 / 84) × 100 = 14.28%."
+      },
+      {
+        id: 20,
+        questionEn: "Q20. The perimeters of two squares are 52 cm and 20 cm. Find the perimeter of a third square whose area is equal to the difference of the areas of these two squares.",
+        questionOr: "ଦୁଇଟି ବର୍ଗକ୍ଷେତ୍ରର ପରିସୀମା 52 ସେମି ଏବଂ 20 ସେମି। ଏକ ତୃତୀୟ ବର୍ଗକ୍ଷେତ୍ରର ପରିସୀମା ନିର୍ଣ୍ଣୟ କରନ୍ତୁ, ଯାହାର କ୍ଷେତ୍ରଫଳ ଏହି ଦୁଇଟି ବର୍ଗକ୍ଷେତ୍ରର କ୍ଷେତ୍ରଫଳ ମଧ୍ୟରେ ପାର୍ଥକ୍ୟ ସହିତ ସମାନ।",
+        options: ["(A) 36 cm", "(B) 32 cm", "(C) 44 cm", "(D) 48 cm"],
+        correct: 3,
+        explanation: "Side 1 = 52/4 = 13 cm ⇒ Area1 = 169. Side 2 = 20/4 = 5 cm ⇒ Area2 = 25. Difference in area = 144 cm². Side 3 = √144 = 12 cm. Perimeter = 4 × 12 = 48 cm."
+      }
+    ];
+
+    // State Variables
+    let currentIndex = 0;
+    let userAnswers = new Array(20).fill(null);
+    let reviewStatus = new Array(20).fill(false);
+    let visitedStatus = new Array(20).fill(false);
+    let totalTimeSeconds = 25 * 60; // 25 minutes
+    let timeRemaining = totalTimeSeconds;
+    let timerInterval = null;
+    let soundEnabled = true;
+
+    // Web Audio API Sound Synthesizer (Zero External Dependencies)
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioCtx;
+    }
+
+    function playSound(freq, duration, type='sine') {
+      if (!soundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (ctx.state === 'suspended') ctx.resume();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.1, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function playClickSound() { playSound(600, 0.08, 'sine'); }
+    function playSelectSound() { playSound(800, 0.1, 'triangle'); }
+    function playStartSound() {
+      if (!soundEnabled) return;
+      playSound(440, 0.15);
+      setTimeout(() => playSound(554.37, 0.15), 100);
+      setTimeout(() => playSound(659.25, 0.25), 200);
+    }
+    function playSubmitSound() {
+      if (!soundEnabled) return;
+      playSound(523.25, 0.15);
+      setTimeout(() => playSound(659.25, 0.15), 120);
+      setTimeout(() => playSound(783.99, 0.3), 240);
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      document.getElementById('soundBtn').textContent = soundEnabled ? '🔊' : '🔇';
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+
+    // Save/Restore Progress in LocalStorage
+    function saveProgress() {
+      const data = {
+        userAnswers,
+        reviewStatus,
+        visitedStatus,
+        timeRemaining,
+        currentIndex
+      };
+      localStorage.setItem('opc_mock23_state', JSON.stringify(data));
+    }
+
+    function loadProgress() {
+      const saved = localStorage.getItem('opc_mock23_state');
+      if (saved) {
+        try {
+          const data = JSON.parse(saved);
+          userAnswers = data.userAnswers || userAnswers;
+          reviewStatus = data.reviewStatus || reviewStatus;
+          visitedStatus = data.visitedStatus || visitedStatus;
+          timeRemaining = data.timeRemaining || timeRemaining;
+          currentIndex = data.currentIndex || 0;
+        } catch(e) {}
+      }
+    }
+
+    // Navigation & Screen Control
+    function showScreen(screenId) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(screenId).classList.add('active');
+    }
+
+    function startTestWithLoading() {
+      playStartSound();
+      document.getElementById('loadingOverlay').style.display = 'flex';
+      setTimeout(() => {
+        document.getElementById('loadingOverlay').style.display = 'none';
+        showScreen('testScreen');
+        document.getElementById('timerBadge').style.display = 'flex';
+        visitedStatus[currentIndex] = true;
+        startTimer();
+        renderQuestion();
+        renderPalette();
+        window.addEventListener('beforeunload', preventAccidentalLeave);
+      }, 1000);
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      updateTimerDisplay();
+      timerInterval = setInterval(() => {
+        timeRemaining--;
+        updateTimerDisplay();
+        saveProgress();
+        if (timeRemaining <= 0) {
+          clearInterval(timerInterval);
+          submitTest();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const mins = Math.floor(timeRemaining / 60);
+      const secs = timeRemaining % 60;
+      const displayStr = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      const timerBadge = document.getElementById('timerBadge');
+      const timerDisplay = document.getElementById('timerDisplay');
+      timerDisplay.textContent = displayStr;
+
+      if (timeRemaining < 300) { // less than 5 mins
+        timerBadge.classList.add('warning');
+      } else {
+        timerBadge.classList.remove('warning');
+      }
+    }
+
+    function preventAccidentalLeave(e) {
+      e.preventDefault();
+      e.returnValue = '';
+    }
+
+    // Render Question & Options
+    function renderQuestion() {
+      const q = questionsData[currentIndex];
+      visitedStatus[currentIndex] = true;
+
+      document.getElementById('qNumText').textContent = `Question ${currentIndex + 1} of 20`;
+      document.getElementById('qTextEn').textContent = q.questionEn;
+      document.getElementById('qTextOr').textContent = q.questionOr;
+
+      const optsContainer = document.getElementById('optionsContainer');
+      optsContainer.innerHTML = '';
+
+      q.options.forEach((optText, optIdx) => {
+        const card = document.createElement('div');
+        card.className = `option-card ${userAnswers[currentIndex] === optIdx ? 'selected' : ''}`;
+        card.onclick = () => selectOption(optIdx);
+
+        const letter = String.fromCharCode(65 + optIdx);
+        card.innerHTML = `
+          <div class="opt-letter">${letter}</div>
+          <div class="opt-text">${optText}</div>
+        `;
+        optsContainer.appendChild(card);
+      });
+
+      renderPalette();
+      saveProgress();
+    }
+
+    function selectOption(optIdx) {
+      playSelectSound();
+      userAnswers[currentIndex] = optIdx;
+      renderQuestion();
+    }
+
+    function clearResponse() {
+      playClickSound();
+      userAnswers[currentIndex] = null;
+      renderQuestion();
+    }
+
+    function markForReview() {
+      playClickSound();
+      reviewStatus[currentIndex] = !reviewStatus[currentIndex];
+      nextQuestion();
+    }
+
+    function prevQuestion() {
+      playClickSound();
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderQuestion();
+      }
+    }
+
+    function nextQuestion() {
+      playClickSound();
+      if (currentIndex < questionsData.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      }
+    }
+
+    function toggleMobilePalette() {
+      playClickSound();
+      const palette = document.querySelector('.palette-container');
+      palette.classList.toggle('active-mobile');
+    }
+
+    function jumpToQuestion(index) {
+      playClickSound();
+      currentIndex = index;
+      const palette = document.querySelector('.palette-container');
+      palette.classList.remove('active-mobile');
+      renderQuestion();
+    }
+
+    // Render Question Palette
+    function renderPalette() {
+      const paletteGrid = document.getElementById('paletteGrid');
+      paletteGrid.innerHTML = '';
+
+      let cAnswered = 0, cNotAnswered = 0, cReview = 0, cNotVisited = 0;
+
+      questionsData.forEach((_, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'q-btn';
+        btn.textContent = idx + 1;
+        btn.onclick = () => jumpToQuestion(idx);
+
+        if (idx === currentIndex) {
+          btn.classList.add('current');
+        }
+
+        const isAns = userAnswers[idx] !== null;
+        const isRev = reviewStatus[idx];
+        const isVis = visitedStatus[idx];
+
+        if (isAns && isRev) {
+          btn.classList.add('review-ans');
+          cReview++;
+        } else if (isRev) {
+          btn.classList.add('review');
+          cReview++;
+        } else if (isAns) {
+          btn.classList.add('answered');
+          cAnswered++;
+        } else if (isVis) {
+          btn.classList.add('not-answered');
+          cNotAnswered++;
+        } else {
+          cNotVisited++;
+        }
+
+        paletteGrid.appendChild(btn);
+      });
+
+      document.getElementById('countAnswered').textContent = cAnswered;
+      document.getElementById('countNotAnswered').textContent = cNotAnswered;
+      document.getElementById('countReview').textContent = cReview;
+      document.getElementById('countNotVisited').textContent = cNotVisited;
+    }
+
+    // Confirmation Modal
+    function confirmSubmitModal() {
+      playClickSound();
+      let ans = 0, unans = 0;
+      userAnswers.forEach(a => a !== null ? ans++ : unans++);
+      document.getElementById('submitModalText').textContent = 
+        `You have answered ${ans} questions and left ${unans} unattempted. Do you want to submit?`;
+      document.getElementById('submitModal').classList.add('active');
+    }
+
+    function closeSubmitModal() {
+      playClickSound();
+      document.getElementById('submitModal').classList.remove('active');
+    }
+
+    // Submit & Scoring
+    function submitTest() {
+      closeSubmitModal();
+      playSubmitSound();
+      if (timerInterval) clearInterval(timerInterval);
+      window.removeEventListener('beforeunload', preventAccidentalLeave);
+
+      document.getElementById('timerBadge').style.display = 'none';
+
+      let correct = 0, wrong = 0, unattempted = 0;
+      questionsData.forEach((q, idx) => {
+        const uAns = userAnswers[idx];
+        if (uAns === null) {
+          unattempted++;
+        } else if (uAns === q.correct) {
+          correct++;
+        } else {
+          wrong++;
+        }
+      });
+
+      const rawScore = (correct * 1) - (wrong * (1/3));
+      const finalScore = Math.max(0, rawScore).toFixed(2);
+      const totalAttempted = correct + wrong;
+      const accuracy = totalAttempted > 0 ? ((correct / totalAttempted) * 100).toFixed(1) : 0;
+      
+      const timeSpentSecs = totalTimeSeconds - timeRemaining;
+      const tMins = Math.floor(timeSpentSecs / 60);
+      const tSecs = timeSpentSecs % 60;
+      const timeSpentStr = `${tMins}m ${tSecs}s`;
+
+      document.getElementById('resScore').textContent = finalScore;
+      document.getElementById('resCorrect').textContent = correct;
+      document.getElementById('resWrong').textContent = wrong;
+      document.getElementById('resUnattempted').textContent = unattempted;
+      document.getElementById('resAccuracy').textContent = `${accuracy}%`;
+      document.getElementById('resTime').textContent = timeSpentStr;
+
+      let grade = "Needs Improvement";
+      if (finalScore >= 16) grade = "Outstanding 🎉";
+      else if (finalScore >= 12) grade = "Excellent 🌟";
+      else if (finalScore >= 8) grade = "Good Attempt 👍";
+      document.getElementById('resGrade').textContent = `Performance: ${grade}`;
+
+      showScreen('resultScreen');
+      localStorage.removeItem('opc_mock23_state');
+    }
+
+    function showResultScreen() {
+      showScreen('resultScreen');
+    }
+
+    // Detailed Review
+    function showReviewScreen() {
+      playClickSound();
+      const reviewList = document.getElementById('reviewList');
+      reviewList.innerHTML = '';
+
+      questionsData.forEach((q, idx) => {
+        const uAns = userAnswers[idx];
+        const isCorrect = uAns === q.correct;
+        const isUnattempted = uAns === null;
+
+        let statusClass = 'status-unattempted';
+        let statusText = 'UNATTEMPTED';
+        if (!isUnattempted) {
+          if (isCorrect) {
+            statusClass = 'status-correct';
+            statusText = 'CORRECT (+1.0)';
+          } else {
+            statusClass = 'status-wrong';
+            statusText = 'WRONG (-0.33)';
+          }
+        }
+
+        const item = document.createElement('div');
+        item.className = 'review-item';
+
+        let optsHtml = '';
+        q.options.forEach((optText, optIdx) => {
+          let optStyle = 'border:1px solid #e2e8f0; background:#fff;';
+          let badge = '';
+
+          if (optIdx === q.correct) {
+            optStyle = 'border:2px solid #22c55e; background:#f0fdf4; font-weight:600;';
+            badge = '<span style="color:#16a34a; font-weight:700; margin-left:auto;">✓ Correct Answer</span>';
+          }
+          if (optIdx === uAns && !isCorrect) {
+            optStyle = 'border:2px solid #ef4444; background:#fef2f2; font-weight:600;';
+            badge = '<span style="color:#dc2626; font-weight:700; margin-left:auto;">✕ Your Choice</span>';
+          }
+
+          const letter = String.fromCharCode(65 + optIdx);
+          optsHtml += `
+            <div style="padding:10px 14px; border-radius:8px; margin-bottom:8px; display:flex; align-items:center; ${optStyle}">
+              <span style="font-weight:700; margin-right:10px;">${letter}.</span> ${optText} ${badge}
+            </div>
+          `;
+        });
+
+        item.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-weight:700; color:var(--primary-dark);">Question ${idx + 1}</span>
+            <span class="review-status-badge ${statusClass}">${statusText}</span>
+          </div>
+          <div style="font-size:1rem; font-weight:600; color:#1e293b; margin:12px 0 6px;">${q.questionEn}</div>
+          <div style="font-size:0.95rem; color:#0369a1; background:#f0f9ff; padding:10px 14px; border-radius:6px; margin-bottom:16px;">${q.questionOr}</div>
+          <div>${optsHtml}</div>
+          <div class="exp-box">
+            <strong>💡 Explanation:</strong><br>${q.explanation}
+          </div>
+        `;
+        reviewList.appendChild(item);
+      });
+
+      showScreen('reviewScreen');
+    }
+
+    function restartTest() {
+      playClickSound();
+      if (confirm("Are you sure you want to restart the test? Your current score will be cleared.")) {
+        userAnswers = new Array(20).fill(null);
+        reviewStatus = new Array(20).fill(false);
+        visitedStatus = new Array(20).fill(false);
+        currentIndex = 0;
+        timeRemaining = totalTimeSeconds;
+        localStorage.removeItem('opc_mock23_state');
+        showScreen('startScreen');
+      }
+    }
+
+    // On Load Init
+    window.addEventListener('DOMContentLoaded', () => {
+      loadProgress();
+    });
+  </script>
+</body>
+</html>
